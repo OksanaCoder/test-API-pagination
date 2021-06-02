@@ -4,10 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import CardItem from './components/CardItem'
 import { useEffect, useState } from 'react';
 import axios from 'axios'
+import Pagination from "react-js-pagination";
 
 
 function App() {
   const [data, setData] = useState([])
+  const [activePage, setActivePage] = useState(0)
 
   useEffect(() => {
     loadData()
@@ -36,7 +38,9 @@ function App() {
         console.log(err)
       })
   }
-
+  const handlePageChange = (pageNumber) => {
+    setActivePage(pageNumber);
+  }
 
 
 
@@ -54,8 +58,14 @@ function App() {
 
           {data.length > 0 ? (
             <>
-              <CardItem data={data} />
-
+              <CardItem data={data} activePage={activePage} />
+              <Pagination
+                activePage={activePage}
+                itemsCountPerPage={10}
+                totalItemsCount={data.length}
+                pageRangeDisplayed={5}
+                onChange={handlePageChange}
+              />
 
             </>
           ) : (
