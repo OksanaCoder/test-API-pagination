@@ -3,31 +3,35 @@ import { Card, Col } from 'react-bootstrap'
 
 const CardItem = ({ data = [], activePage }) => {
     console.log(data, 'mapping')
-
+    const start = (activePage - 1) * 10;
+    const end = activePage * 10;
     return (
-        <>
-            {data.length && data.slice(activePage * 10, activePage * 10 + 10).map(item => {
+        <div className='cards-wrapper'>
+            {data.length && data.slice(start, end).map(item => {
                 return (
-                    <Col lg={4} md={6} sm={12} xs={12} key={item.id} style={{ padding: '80px' }} onClick={() => window.open(item.link, "_blank")}>
-                        <Card style={{ border: 'none' }} className='text-center'>
-                            <Card.Img variant="top" src={item.avatar} style={{ borderRadius: '0' }} className='mb-4' />
-                            <Card.Body>
-                                <Card.Title>{item.lastName} {item.firstName}</Card.Title>
-                                <Card.Text>
-                                    <ul>
+                    <div className='item-card' key={item.id} style={{ padding: '80px' }} onClick={() => window.open(item.link, "_blank")}>
+                        <div style={{ border: 'none' }} className='text-center'>
+                            <img variant="top" src={item.avatar} style={{ borderRadius: '0' }} className='mb-4 image-card' />
+                            <div>
+                                <h4>{item.lastName} {item.firstName}</h4>
+                                <div className='card-content'>
+                                    <ul className='list-unstyled row-items'>
                                         {Array.isArray(item.speciality) && item.speciality.length > 0 && item.speciality.map((i) => {
                                             return (
-                                                <li className='lightGrey'>{i}</li>
+                                                <div className='d-flex justify-content-between'>
+                                                    <li className='lightGrey margin-items'>{i}</li>
+                                                    <strong className='lightGrey margin-items dot'>&#183;</strong>
+                                                </div>
                                             )
                                         })}
                                     </ul>
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </Col>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 )
             })}
-        </>
+        </div>
     )
 }
 

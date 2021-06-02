@@ -9,7 +9,7 @@ import Pagination from "react-js-pagination";
 
 function App() {
   const [data, setData] = useState([])
-  const [activePage, setActivePage] = useState(0)
+  const [activePage, setActivePage] = useState(1)
 
   useEffect(() => {
     loadData()
@@ -46,33 +46,33 @@ function App() {
 
 
   return (
-    <div>
-      <Container>
-        <h3 style={{ fontWeight: 'bold' }} className='mt-4 mb-5 mainColor'>Наши специалисты</h3>
-        <p className='mainColor'>Высококвалифицированные врачи-стоматологи AstraDent регулярно посещают профессиональные
-        мастер-классы и стажируются в Украине и за рубежом, чтобы быть в курсе всех современных тенденций
-        дентальной медицины. Наши специалисты оснащены современной техникой мировых лидеров
-        производства стоматологического оборудования и используют только высококачественные
+    <div className='p-5'>
+
+      <h3 style={{ fontWeight: 'bold' }} className='mt-4 mb-5 mainColor'>Наши специалисты</h3>
+      <p className='mainColor'>Высококвалифицированные врачи-стоматологи AstraDent регулярно посещают профессиональные
+      мастер-классы и стажируются в Украине и за рубежом, чтобы быть в курсе всех современных тенденций
+      дентальной медицины. Наши специалисты оснащены современной техникой мировых лидеров
+      производства стоматологического оборудования и используют только высококачественные
         сертифицированные материалы от ведущих компаний.</p>
-        <Row>
+      <div>
 
-          {data.length > 0 ? (
-            <>
-              <CardItem data={data} activePage={activePage} />
-              <Pagination
-                activePage={activePage}
-                itemsCountPerPage={10}
-                totalItemsCount={data.length}
-                pageRangeDisplayed={5}
-                onChange={handlePageChange}
-              />
+        {data.length > 0 ? (
+          <>
+            <CardItem data={data} activePage={activePage} />
+            <Pagination
+              activePage={activePage}
+              itemsCountPerPage={10}
+              totalItemsCount={data.length}
+              pageRangeDisplayed={5}
+              onChange={handlePageChange}
+            />
 
-            </>
-          ) : (
-              <h4>No data</h4>
-            )}
-        </Row>
-      </Container>
+          </>
+        ) : (
+            <h4>No data</h4>
+          )}
+      </div>
+
     </div>
   );
 }

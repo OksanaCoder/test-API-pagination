@@ -26,3 +26,33 @@ body {
   margin-right: 10px;
   font-size: 20px;
 }
+.row-items {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.margin-items {
+  margin-right: 4px;
+}
+.cards-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.item-card {
+  width: 33.3%;
+}
+.image-card {
+  width: 100%;
+}
+@media (max-width: 500px) {
+  .item-card {
+    width: 100%;
+  }
+}
+@media (min-width: 800px)and (max-width: 1000px) {
+  .item-card {
+    width: 50%;
+  }
+}
